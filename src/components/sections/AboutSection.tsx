@@ -1,30 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Cpu, Zap, Workflow } from 'lucide-react';
+import { Globe, Palette, Terminal, LayoutGrid, Code, Coffee, Server, Smartphone } from "lucide-react";
 
 const AboutSection: React.FC = () => {
-  const features = [
-    {
-      icon: Brain,
-      title: "AI INTEGRATION",
-      description: "Advanced machine learning algorithms powering next-gen robotic intelligence"
-    },
-    {
-      icon: Cpu,
-      title: "QUANTUM PROCESSING",
-      description: "Harnessing quantum computing for unprecedented computational power"
-    },
-    {
-      icon: Zap,
-      title: "NEURAL INTERFACES",
-      description: "Direct brain-computer interfaces for seamless human-machine interaction"
-    },
-    {
-      icon: Workflow,
-      title: "CYBERNETIC SYSTEMS",
-      description: "Bio-mechanical fusion creating the perfect synthesis of organic and digital"
-    }
-  ];
+
+const features = [
+  {
+    icon: Globe,
+    title: "HTML5",
+    description: "Semantic markup and clean structure for modern web development"
+  },
+  {
+    icon: Palette,
+    title: "CSS3",
+    description: "Styling, animations, and responsive design principles"
+  },
+  {
+    icon: Terminal,
+    title: "JavaScript",
+    description: "Interactive functionality and dynamic web applications"
+  },
+  {
+    icon: LayoutGrid,
+    title: "Bootstrap",
+    description: "Responsive grid system and UI components for faster design"
+  },
+  {
+    icon: Code,
+    title: "Python",
+    description: "Powerful programming for backend, automation, and AI"
+  },
+  {
+    icon: Coffee,
+    title: "Java",
+    description: "Object-oriented programming for robust and scalable applications"
+  },
+  {
+    icon: Server,
+    title: "PHP",
+    description: "Server-side scripting for dynamic and database-driven websites"
+  },
+  {
+    icon: Smartphone,
+    title: "Flutter",
+    description: "Cross-platform mobile app development with expressive UI"
+  }
+];
+
 
   return (
     <section id="about" className="min-h-screen flex items-center py-20 relative overflow-hidden">
@@ -70,8 +93,8 @@ const AboutSection: React.FC = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full" />
             <p className="text-lg md:text-xl text-cyber max-w-3xl mx-auto leading-relaxed">
-              A convergence of artificial intelligence, quantum mechanics, and cybernetic enhancement. 
-              I architect the bridge between human consciousness and digital infinity, creating 
+              A convergence of artificial intelligence, quantum mechanics, and cybernetic enhancement.
+              I architect the bridge between human consciousness and digital infinity, creating
               experiences that transcend the boundaries of traditional technology.
             </p>
           </motion.div>
@@ -87,24 +110,29 @@ const AboutSection: React.FC = () => {
             >
               <div className="glass-card p-8 rounded-2xl">
                 <h3 className="text-2xl font-orbitron font-semibold neon-glow mb-4">
-                  NEURAL ARCHITECT
+                   OVERVIEW
                 </h3>
                 <p className="text-cyber mb-6">
-                  Specializing in the fusion of biological neural networks with artificial 
-                  intelligence systems. My work focuses on creating seamless interfaces 
-                  between human cognition and digital consciousness.
+                  Hello! I'm <span className="font-bold text-primary">Yug</span>, a passionate Computer Engineering (C.E.) diploma student at <span className="font-bold text-secondary">Darshan University</span>.<br />
+                  Technology has always fascinated me, and I'm constantly exploring the world of programming, software development, and artificial intelligence.
+                  <br /><br />
+                  Hailing from <span className="font-bold text-accent">Manavadar</span>, I am driven by curiosity and a desire to build innovative solutions. I enjoy learning new technologies and applying my knowledge to real-world projects. My journey in computer engineering is fueled by a strong interest in coding, problem-solving, and automation.
+                  <br /><br />
+                  I believe in <span className="font-bold text-primary">continuous learning and growth</span>, and I'm excited to expand my skills in AI, web development, and software engineering. This space is where I share my knowledge, experiences, and projects.
+                  <br /><br />
+                  <span className="font-bold text-secondary">Let's connect and build something amazing together! 🚀</span>
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full pulse-glow" />
                     <span className="font-rajdhani text-foreground/90">
-                      10+ Years in Cybernetic Research
+                      10+ Years in AI & Robotics
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-secondary rounded-full pulse-glow" />
                     <span className="font-rajdhani text-foreground/90">
-                      50+ AI Integration Projects
+                      10+ AI Integration Projects
                     </span>
                   </div>
                   <div className="flex items-center gap-3">

@@ -53,7 +53,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onNavigate }) =>
           >
             <h1 className="text-xl font-orbitron font-bold heading-cyber cursor-pointer"
                 onClick={() => handleNavClick('home')}>
-              CYBER.DEV
+              DRAGO
             </h1>
           </motion.div>
 

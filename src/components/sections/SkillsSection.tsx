@@ -18,42 +18,42 @@ import {
 const SkillsSection: React.FC = () => {
   const skillCategories = [
     {
-      title: "NEURAL ARCHITECTURE",
-      description: "Advanced AI and machine learning systems",
+      title: "PROGRAMMING LANGUAGES",
+      description: "Core development expertise across modern and classic languages",
       skills: [
-        { name: "Deep Learning", level: 95, icon: Brain },
-        { name: "Neural Networks", level: 92, icon: Network },
-        { name: "Quantum ML", level: 88, icon: Sparkles }
+        { name: "Java", level: 92, icon: Code },
+        { name: "Python", level: 95, icon: Brain },
+        { name: "PHP", level: 88, icon: Database },
       ],
       color: "primary"
     },
     {
-      title: "CYBERNETIC SYSTEMS",
-      description: "Core programming and computational frameworks",
+      title: "WEB TECHNOLOGIES",
+      description: "Front-end frameworks and responsive web design",
       skills: [
-        { name: "Quantum Computing", level: 90, icon: Cpu },
-        { name: "Distributed Systems", level: 94, icon: Layers },
-        { name: "Real-time Processing", level: 89, icon: Zap }
+        { name: "HTML5", level: 96, icon: Code },
+        { name: "CSS3", level: 94, icon: Layers },
+        { name: "Bootstrap", level: 90, icon: Zap }
       ],
       color: "secondary"
     },
     {
-      title: "DATA CONSCIOUSNESS",
-      description: "Information architecture and database intelligence",
+      title: "MOBILE DEVELOPMENT",
+      description: "Cross-platform and native mobile solutions",
       skills: [
-        { name: "Quantum Databases", level: 87, icon: Database },
-        { name: "Data Synthesis", level: 91, icon: Binary },
-        { name: "Information Theory", level: 85, icon: Code }
+        { name: "Flutter", level: 92, icon: Cpu },
+        { name: "Java (Android)", level: 89, icon: Binary },
+        { name: "React Native", level: 87, icon: Bot }
       ],
       color: "accent"
     },
     {
-      title: "DEFENSE PROTOCOLS",
-      description: "Security and protection systems",
+      title: "CYBERNETIC SYSTEMS",
+      description: "AI-driven futuristic and computational frameworks",
       skills: [
-        { name: "Cybersecurity", level: 93, icon: Shield },
-        { name: "Cryptography", level: 89, icon: Orbit },
-        { name: "Threat Analysis", level: 86, icon: Bot }
+        { name: "Quantum Computing", level: 90, icon: Cpu },
+        { name: "Neural Networks", level: 92, icon: Network },
+        { name: "Cybersecurity", level: 93, icon: Shield }
       ],
       color: "primary"
     }

@@ -1,49 +1,64 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Zap, Bot, Brain, Cpu } from 'lucide-react';
+import { ExternalLink, Github, Joystick, Zap, Bot, Globe, Cpu, Download } from 'lucide-react';
+
 
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: "NEURAL MESH NETWORK",
-      description: "Advanced brain-computer interface enabling direct thought-to-digital communication. Features quantum entanglement protocols for instantaneous data transfer.",
-      technologies: ["Quantum Computing", "Neural Networks", "BCI Technology"],
-      icon: Brain,
+      title: "AI ASSISTANT",
+      description: "Smart assistant that handles commands like opening social apps or answering questions.",
+      technologies: ["Python", "Node.js", "MongoDB"],
+      icon: Bot,
       gradient: "from-primary/80 to-secondary/80",
       glowColor: "primary",
       status: "ACTIVE",
       links: {
-        demo: "#",
-        github: "#"
+        demo: "https://ai-assistant-33n3.onrender.com/",
+        github: "https://github.com/Yugpatel009/AI-assistant-v1/blob/Diploma-Computer-Engineering/README.md"
       }
     },
     {
       id: 2,
-      title: "CYBERNETIC GUARDIAN",
-      description: "Autonomous defense system with AI-driven threat assessment and predictive security algorithms. Protects digital infrastructure in real-time.",
-      technologies: ["AI Defense", "Machine Learning", "Cybersecurity"],
-      icon: Bot,
+      title: "OLD PORTFOLIO ",
+      description: "A personal portfolio website showcasing projects, skills, and achievements. Features responsive design, smooth navigation, and an organized project gallery.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      icon: Globe,
       gradient: "from-secondary/80 to-accent/80",
       glowColor: "secondary",
       status: "DEPLOYED",
       links: {
-        demo: "#",
-        github: "#"
-      }
+        demo: "https://yugpatel009.github.io/Drago_Website/project.html",
+        github: "https://github.com/Yugpatel009",
+      },
     },
     {
       id: 3,
-      title: "QUANTUM PROCESSOR ARRAY",
-      description: "Distributed quantum computing cluster capable of processing complex simulations at unprecedented speeds. Powers next-gen AI consciousness.",
+      title: "TIC-TAC-TOE",
+      description: "Modern responsive websites with animation and interactive features.",
       technologies: ["Quantum Physics", "Distributed Computing", "AI Consciousness"],
-      icon: Cpu,
+      icon: Joystick,
       gradient: "from-accent/80 to-primary/80",
       glowColor: "accent",
       status: "EXPERIMENTAL",
       links: {
-        demo: "#",
-        github: "#"
+        demo: "https://tic-toc-tac.onrender.com/",
+        github: "https://github.com/Yugpatel009/Tic-Toc-Tac"
+      }
+    },
+    {
+      id: 4,
+      title: "Game Dwaonloder",
+      description: "I am creating a fast game downloader. This downloader allows users to paste all the links of a game (such as multi-part links from FitGirl repacks). Once the links are added, the downloader will automatically begin fetching all parts of the game and download them seamlessly. The goal is to provide a simple, one-click solution for downloading large multi-part games without needing to manually manage each file.",
+      technologies: ["python", "PyQt5", "Json"],
+      icon: Download,
+      gradient: "from-accent/80 to-primary/80",
+      glowColor: "accent",
+      status: "ACTIVE",
+      links: {
+        demo: "https://github.com/devbyaryanvala/FuckingFast.coDownloader.git",
+        github: "https://github.com/devbyaryanvala/FuckingFast.coDownloader.git"
       }
     }
   ];
@@ -93,8 +108,8 @@ const ProjectsSection: React.FC = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full" />
             <p className="text-lg md:text-xl text-cyber max-w-3xl mx-auto leading-relaxed">
-              Explore the cutting-edge projects that push the boundaries of technology, 
-              consciousness, and digital evolution. Each system represents a leap forward 
+              Explore the cutting-edge projects that push the boundaries of technology,
+              consciousness, and digital evolution. Each system represents a leap forward
               in human-machine integration.
             </p>
           </motion.div>
@@ -116,7 +131,7 @@ const ProjectsSection: React.FC = () => {
                     <span className={`px-3 py-1 text-xs font-orbitron font-semibold rounded-full 
                       ${project.status === 'ACTIVE' ? 'bg-primary/20 text-primary border border-primary/30' :
                         project.status === 'DEPLOYED' ? 'bg-secondary/20 text-secondary border border-secondary/30' :
-                        'bg-accent/20 text-accent border border-accent/30'}`}>
+                          'bg-accent/20 text-accent border border-accent/30'}`}>
                       {project.status}
                     </span>
                   </div>
@@ -137,7 +152,7 @@ const ProjectsSection: React.FC = () => {
                     <h3 className="text-xl font-orbitron font-bold text-primary group-hover:neon-glow transition-all duration-300">
                       {project.title}
                     </h3>
-                    
+
                     <p className="text-cyber text-sm leading-relaxed">
                       {project.description}
                     </p>
@@ -197,7 +212,7 @@ const ProjectsSection: React.FC = () => {
                 COLLABORATION PROTOCOL
               </h3>
               <p className="text-cyber mb-6">
-                Ready to push the boundaries of what's possible? Let's architect 
+                Ready to push the boundaries of what's possible? Let's architect
                 the future together through advanced technological synthesis.
               </p>
               <motion.button

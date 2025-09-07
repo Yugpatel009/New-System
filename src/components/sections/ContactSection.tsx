@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MessageCircle, Zap, Github, Linkedin, Twitter } from 'lucide-react';
+import { Send, Mail, MessageCircle, Zap, Github, Linkedin,Instagram } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,9 +24,9 @@ const ContactSection: React.FC = () => {
   };
 
   const socialLinks = [
-    { icon: Github, label: "GitHub", href: "#", color: "text-foreground hover:text-primary" },
-    { icon: Linkedin, label: "LinkedIn", href: "#", color: "text-foreground hover:text-secondary" },
-    { icon: Twitter, label: "Twitter", href: "#", color: "text-foreground hover:text-accent" },
+    { icon: Github, label: "GitHub", href: "https://github.com/Yugpatel009", color: "text-foreground hover:text-primary" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/yug-kanasagara-2030302a7/", color: "text-foreground hover:text-secondary" },
+    { icon: Instagram, label: "Insta", href: "https://www.instagram.com/kansagara.yug/", color: "text-foreground hover:text-accent" },
     { icon: Mail, label: "Email", href: "mailto:contact@cyber.dev", color: "text-foreground hover:text-primary" }
   ];
 
