@@ -36,8 +36,10 @@ const ProjectsSection: React.FC = () => {
     {
       id: 3,
       title: "TIC-TAC-TOE",
-      description: "Modern responsive websites with animation and interactive features.",
-      technologies: ["Quantum Physics", "Distributed Computing", "AI Consciousness"],
+      description:
+        "An interactive web-based Tic-Tac-Toe built with modern web tech, featuring responsive design, real-time gameplay logic, and a clean UI for both desktop and mobile devices.",
+
+      technologies: ["Python", "Node js", "Express", "Socket.io"],
       icon: Joystick,
       gradient: "from-accent/80 to-primary/80",
       glowColor: "accent",
@@ -215,13 +217,17 @@ const ProjectsSection: React.FC = () => {
                 Ready to push the boundaries of what's possible? Let's architect
                 the future together through advanced technological synthesis.
               </p>
-              <motion.button
+              <motion.a
+                href="mailto:demodrago40@gmail.com"      // your Gmail address
+                target="_blank"                          // opens in a new tab/window
+                rel="noopener noreferrer"                // security best practice
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="glass-card-hover px-8 py-4 rounded-xl font-orbitron font-semibold text-primary neon-border transition-all duration-300 hover:neon-glow"
               >
                 INITIATE COLLABORATION
-              </motion.button>
+              </motion.a>
+
             </div>
           </motion.div>
         </div>

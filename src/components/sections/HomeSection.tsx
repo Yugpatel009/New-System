@@ -1,7 +1,6 @@
-// export default HomeSection;
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Zap } from 'lucide-react';
+import { ChevronDown, Zap, Terminal } from 'lucide-react';
 
 interface HomeSectionProps {
   onNavigate: (section: string) => void;
@@ -9,15 +8,149 @@ interface HomeSectionProps {
 
 const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
   const [showSplash, setShowSplash] = useState(true);
+  const [matrixActive, setMatrixActive] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>();
 
   const handleSplashComplete = () => {
     setShowSplash(false);
-    // Redirect to homepage after splash
-    window.location.hash = '#home'; // or use react-router if available
+    window.location.hash = '#home';
   };
+
+  // Matrix Effect Implementation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.altKey && event.key.toLowerCase() === 'g') {
+        event.preventDefault();
+        setMatrixActive(!matrixActive);
+      }
+      // ESC key to exit matrix mode
+      if (event.key === 'Escape') {
+        setMatrixActive(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [matrixActive]);
+
+  // Matrix Canvas Effect
+  useEffect(() => {
+    if (!matrixActive || !canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Matrix characters (mix of Japanese katakana, numbers, and symbols)
+    const matrixChars = 'アカサタナハマヤラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレゲゼデベペオコソトノホモヨロゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?';
+    
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops: number[] = [];
+
+    // Initialize drops
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * canvas.height;
+    }
+
+    // Matrix animation function
+    const drawMatrix = () => {
+      // Semi-transparent black background for trail effect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00ff41'; // Classic Matrix green
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        // Random character
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        
+        // Draw character
+        ctx.fillText(char, i * fontSize, drops[i]);
+
+        // Reset drop to top randomly
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        
+        // Move drop down
+        drops[i] += fontSize;
+      }
+
+      animationRef.current = requestAnimationFrame(drawMatrix);
+    };
+
+    drawMatrix();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, [matrixActive]);
 
   return (
     <>
+      {/* Matrix Canvas Overlay */}
+      <AnimatePresence>
+        {matrixActive && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-50 pointer-events-none"
+          >
+            <canvas
+              ref={canvasRef}
+              className="w-full h-full"
+              style={{ background: 'rgba(0, 0, 0, 0.8)' }}
+            />
+            
+            {/* Matrix mode indicator */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="absolute top-8 left-8 glass-card p-4 rounded-xl flex items-center gap-3"
+            >
+              <Terminal className="text-green-500" size={20} />
+              <div>
+                <p className="font-orbitron text-green-500 font-bold text-sm">MATRIX MODE ACTIVE</p>
+                <p className="font-rajdhani text-green-400/80 text-xs">Press ESC to exit</p>
+              </div>
+            </motion.div>
+
+            {/* Hidden message in matrix mode */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: 2 }}
+              className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center"
+            >
+              <p className="font-orbitron text-green-500 text-lg mb-2 neon-glow-green">
+                WELCOME TO THE MATRIX
+              </p>
+              <p className="font-rajdhani text-green-400/80 text-sm">
+                "There is no spoon..." - Neo
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.section
         id="home"
         initial={{ opacity: 0 }}
@@ -80,8 +213,8 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
               className="mb-8"
             >
               <h1 className="text-4xl md:text-6xl lg:text-8xl font-orbitron font-bold heading-cyber mb-4">
-                SYSTEM
-                <span className="block neon-glow-purple">BOOT</span>
+                DIGITAL
+                <span className="block neon-glow-purple">ARCHITECT</span>
               </h1>
               <div className="flex items-center justify-center gap-4 mb-6">
                 <motion.div
@@ -91,7 +224,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
                   <Zap className="text-primary" size={32} />
                 </motion.div>
                 <p className="text-xl md:text-2xl font-rajdhani text-foreground/80 font-medium">
-                  AI & ROBOTICS ARCHITECT
+                  COMPUTER ENGINEERING VISIONARY
                 </p>
                 <motion.div
                   animate={{ rotate: -360 }}
@@ -109,8 +242,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-lg md:text-xl text-cyber max-w-2xl mx-auto mb-12 leading-relaxed"
             >
-              Crafting the future through advanced robotics, AI integration, and 
-              cybernetic interfaces. Welcome to the next evolution of digital experience.
+              Shaping tomorrow's machines with adaptive algorithms, custom silicon, and intelligent software ecosystems.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -160,6 +292,18 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
           </motion.div>
         </div>
 
+        {/* Secret Matrix Hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3, duration: 1 }}
+          className="absolute bottom-4 right-4 glass-card p-3 rounded-lg"
+        >
+          <p className="font-rajdhani text-xs text-foreground/50">
+            Press <kbd className="px-2 py-1 bg-muted/50 rounded text-foreground/70 font-mono">Alt + D</kbd> for something special...
+          </p>
+        </motion.div>
+
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(6)].map((_, i) => (
@@ -183,6 +327,21 @@ const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
           ))}
         </div>
       </motion.section>
+
+      <style>{`
+        .neon-glow-green {
+          text-shadow: 
+            0 0 5px #00ff41,
+            0 0 10px #00ff41,
+            0 0 15px #00ff41,
+            0 0 20px #00ff41;
+        }
+        
+        kbd {
+          font-family: 'Courier New', monospace;
+          font-weight: bold;
+        }
+      `}</style>
     </>
   );
 };

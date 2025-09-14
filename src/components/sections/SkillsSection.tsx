@@ -1,19 +1,32 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Code, 
-  Cpu, 
-  Database, 
-  Zap, 
-  Brain, 
-  Shield, 
-  Orbit, 
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Code,
+  Cpu,
+  Database,
+  Zap,
+  Brain,
+  Shield,
+  Orbit,
   Binary,
   Bot,
   Sparkles,
   Layers,
-  Network
-} from 'lucide-react';
+  Network,
+} from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: i * 0.15,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const SkillsSection: React.FC = () => {
   const skillCategories = [
@@ -25,7 +38,7 @@ const SkillsSection: React.FC = () => {
         { name: "Python", level: 95, icon: Brain },
         { name: "PHP", level: 88, icon: Database },
       ],
-      color: "primary"
+      color: "primary",
     },
     {
       title: "WEB TECHNOLOGIES",
@@ -33,9 +46,9 @@ const SkillsSection: React.FC = () => {
       skills: [
         { name: "HTML5", level: 96, icon: Code },
         { name: "CSS3", level: 94, icon: Layers },
-        { name: "Bootstrap", level: 90, icon: Zap }
+        { name: "Bootstrap", level: 90, icon: Zap },
       ],
-      color: "secondary"
+      color: "secondary",
     },
     {
       title: "MOBILE DEVELOPMENT",
@@ -43,9 +56,9 @@ const SkillsSection: React.FC = () => {
       skills: [
         { name: "Flutter", level: 92, icon: Cpu },
         { name: "Java (Android)", level: 89, icon: Binary },
-        { name: "React Native", level: 87, icon: Bot }
+        { name: "React Native", level: 87, icon: Bot },
       ],
-      color: "accent"
+      color: "accent",
     },
     {
       title: "CYBERNETIC SYSTEMS",
@@ -53,72 +66,44 @@ const SkillsSection: React.FC = () => {
       skills: [
         { name: "Quantum Computing", level: 90, icon: Cpu },
         { name: "Neural Networks", level: 92, icon: Network },
-        { name: "Cybersecurity", level: 93, icon: Shield }
+        { name: "Cybersecurity", level: 93, icon: Shield },
       ],
-      color: "primary"
-    }
+      color: "primary",
+    },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section id="skills" className="min-h-screen flex items-center py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
+    <section
+      id="skills"
+      className="min-h-screen flex items-center py-20 relative overflow-hidden"
+    >
+      {/* Animated Background */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <motion.div
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/3 right-20 w-48 h-48 border border-primary/10 rounded-full"
         />
         <motion.div
-          animate={{
-            x: [-40, 40, -40],
-            opacity: [0.1, 0.5, 0.1]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          animate={{ x: [-40, 40, -40] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-20 left-1/4 w-2 h-32 bg-gradient-to-t from-accent to-secondary rounded-full"
         />
-      </div>
+      </motion.div>
 
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-orbitron font-bold heading-cyber mb-6">
@@ -126,64 +111,65 @@ const SkillsSection: React.FC = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full" />
             <p className="text-lg md:text-xl text-cyber max-w-3xl mx-auto leading-relaxed">
-              Advanced competencies spanning multiple domains of technological evolution. 
-              Each skill represents years of neural pathway optimization and quantum enhancement.
+              Advanced competencies spanning multiple domains of technological
+              evolution. Each skill represents years of neural pathway
+              optimization and quantum enhancement.
             </p>
           </motion.div>
 
           {/* Skills Grid */}
           <motion.div
-            variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.25, delayChildren: 0.2 },
+              },
+            }}
             className="grid md:grid-cols-2 gap-8"
           >
-            {skillCategories.map((category, categoryIndex) => (
+            {skillCategories.map((category, i) => (
               <motion.div
                 key={category.title}
-                variants={itemVariants}
-                className="glass-card p-8 rounded-2xl group hover:scale-105 transition-transform duration-300"
+                variants={fadeUp}
+                custom={i}
+                className="glass-card p-8 rounded-2xl group hover:scale-[1.03] transition-transform duration-300"
               >
                 {/* Category Header */}
-                <div className="mb-8">
-                  <h3 className={`text-xl font-orbitron font-bold mb-2 ${
-                    category.color === 'primary' ? 'text-primary neon-glow' :
-                    category.color === 'secondary' ? 'text-secondary neon-glow-purple' :
-                    'text-accent'
-                  }`}>
-                    {category.title}
-                  </h3>
-                  <p className="text-cyber text-sm">
-                    {category.description}
-                  </p>
-                </div>
+                <h3
+                  className={`text-xl font-orbitron font-bold mb-2 ${category.color === "primary"
+                      ? "text-primary neon-glow"
+                      : category.color === "secondary"
+                        ? "text-secondary neon-glow-purple"
+                        : "text-accent"
+                    }`}
+                >
+                  {category.title}
+                </h3>
+                <p className="text-cyber text-sm mb-6">{category.description}</p>
 
-                {/* Skills List */}
+                {/* Skills */}
                 <div className="space-y-6">
-                  {category.skills.map((skill, skillIndex) => (
+                  {category.skills.map((skill, j) => (
                     <motion.div
                       key={skill.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: categoryIndex * 0.2 + skillIndex * 0.1 
-                      }}
+                      variants={fadeUp}
+                      custom={j}
                       className="space-y-3"
                     >
-                      {/* Skill Header */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <motion.div
-                            whileHover={{ rotate: 360 }}
-                            transition={{ duration: 0.6 }}
-                            className={`p-2 rounded-lg ${
-                              category.color === 'primary' ? 'bg-primary/20 text-primary' :
-                              category.color === 'secondary' ? 'bg-secondary/20 text-secondary' :
-                              'bg-accent/20 text-accent'
-                            }`}
+                            whileHover={{ rotate: 360, scale: 1.2 }}
+                            transition={{ type: "spring", stiffness: 200 }}
+                            className={`p-2 rounded-lg ${category.color === "primary"
+                                ? "bg-primary/20 text-primary"
+                                : category.color === "secondary"
+                                  ? "bg-secondary/20 text-secondary"
+                                  : "bg-accent/20 text-accent"
+                              }`}
                           >
                             <skill.icon size={20} />
                           </motion.div>
@@ -191,11 +177,14 @@ const SkillsSection: React.FC = () => {
                             {skill.name}
                           </span>
                         </div>
-                        <span className={`font-orbitron font-bold text-sm ${
-                          category.color === 'primary' ? 'text-primary' :
-                          category.color === 'secondary' ? 'text-secondary' :
-                          'text-accent'
-                        }`}>
+                        <span
+                          className={`font-orbitron font-bold text-sm ${category.color === "primary"
+                              ? "text-primary"
+                              : category.color === "secondary"
+                                ? "text-secondary"
+                                : "text-accent"
+                            }`}
+                        >
                           {skill.level}%
                         </span>
                       </div>
@@ -207,42 +196,15 @@ const SkillsSection: React.FC = () => {
                             initial={{ width: 0 }}
                             whileInView={{ width: `${skill.level}%` }}
                             viewport={{ once: true }}
-                            transition={{ 
-                              duration: 1.5, 
-                              delay: categoryIndex * 0.2 + skillIndex * 0.2,
-                              ease: "easeOut"
-                            }}
-                            className={`h-full rounded-full relative ${
-                              category.color === 'primary' ? 'bg-gradient-to-r from-primary to-primary/60' :
-                              category.color === 'secondary' ? 'bg-gradient-to-r from-secondary to-secondary/60' :
-                              'bg-gradient-to-r from-accent to-accent/60'
-                            }`}
-                          >
-                            {/* Glow Effect */}
-                            <div className={`absolute inset-0 blur-sm ${
-                              category.color === 'primary' ? 'bg-primary/50' :
-                              category.color === 'secondary' ? 'bg-secondary/50' :
-                              'bg-accent/50'
-                            }`} />
-                          </motion.div>
+                            transition={{ duration: 1.4, ease: "easeOut" }}
+                            className={`h-full rounded-full ${category.color === "primary"
+                                ? "bg-gradient-to-r from-primary to-primary/60"
+                                : category.color === "secondary"
+                                  ? "bg-gradient-to-r from-secondary to-secondary/60"
+                                  : "bg-gradient-to-r from-accent to-accent/60"
+                              }`}
+                          />
                         </div>
-                        
-                        {/* Animated Progress Indicator */}
-                        <motion.div
-                          initial={{ x: -10, opacity: 0 }}
-                          whileInView={{ x: `${skill.level * 3}px`, opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ 
-                            duration: 1.5, 
-                            delay: categoryIndex * 0.2 + skillIndex * 0.2,
-                            ease: "easeOut"
-                          }}
-                          className={`absolute -top-1 w-4 h-4 rounded-full ${
-                            category.color === 'primary' ? 'bg-primary shadow-lg shadow-primary/50' :
-                            category.color === 'secondary' ? 'bg-secondary shadow-lg shadow-secondary/50' :
-                            'bg-accent shadow-lg shadow-accent/50'
-                          }`}
-                        />
                       </div>
                     </motion.div>
                   ))}
@@ -253,10 +215,10 @@ const SkillsSection: React.FC = () => {
 
           {/* Performance Metrics */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-20 glass-card p-8 rounded-2xl"
           >
             <h3 className="text-2xl font-orbitron font-bold text-center heading-cyber mb-8">
@@ -264,23 +226,21 @@ const SkillsSection: React.FC = () => {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { metric: "PROCESSING SPEED", value: "10^18 ops/sec", icon: Zap },
-                { metric: "NEURAL EFFICIENCY", value: "99.97%", icon: Brain },
-                { metric: "QUANTUM COHERENCE", value: "∞ qubits", icon: Sparkles },
-                { metric: "SYSTEM INTEGRITY", value: "OPTIMAL", icon: Shield }
-              ].map((stat, index) => (
+                { metric: "PARALLEL CORES", value: "128", icon: Zap },
+                { metric: "AI INFERENCE RATE", value: "12.5 TFLOPS", icon: Brain },
+                { metric: "DATA BANDWIDTH", value: "1.2 TB/s", icon: Sparkles },
+                { metric: "SYSTEM UPTIME", value: "99.999%", icon: Shield },
+              ].map((stat, i) => (
                 <motion.div
                   key={stat.metric}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  variants={fadeUp}
+                  custom={i}
                   className="text-center group"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-primary/30 transition-all duration-300"
+                    whileHover={{ scale: 1.15, rotate: 360 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                    className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center"
                   >
                     <stat.icon className="text-primary" size={24} />
                   </motion.div>
